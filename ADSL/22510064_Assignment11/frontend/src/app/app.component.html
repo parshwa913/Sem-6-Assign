@@ -1,0 +1,80 @@
+<div class="container" style="background-color: aqua;"> 
+  <h1>Research Papers Database Search</h1>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+    <div class="form-group">
+      <label for="queryType">Select Query Type:</label>
+      <select id="queryType" formControlName="queryType" class="form-control">
+        <option value="citation">Check Citation Path</option>
+        <option value="classification">Paper Classification</option>
+        <option value="paperDetails">Paper Details</option>
+        <option value="allPapers">View All Papers</option>
+      </select>
+    </div>
+
+    <ng-container *ngIf="searchForm.get('queryType')?.value === 'citation'">
+      <div class="form-group">
+        <label for="paperA">Paper A ID:</label>
+        <input type="text" id="paperA" formControlName="paperA" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="paperB">Paper B ID:</label>
+        <input type="text" id="paperB" formControlName="paperB" class="form-control">
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="searchForm.get('queryType')?.value === 'classification' || 
+                         searchForm.get('queryType')?.value === 'paperDetails'">
+      <div class="form-group">
+        <label for="paperId">Paper ID:</label>
+        <input type="text" id="paperId" formControlName="paperId" class="form-control">
+      </div>
+    </ng-container>
+
+    <button type="submit" class="btn-submit" [disabled]="loading">
+      {{ loading ? 'Searching...' : 'Search' }}
+    </button>
+  </form>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="paperDetails" class="paper-details">
+    <h2>Paper Details</h2>
+    <div class="detail-section">
+      <h3>Paper Information</h3>
+      <pre>{{ paperDetails.paper | json }}</pre>
+    </div>
+
+    <div class="detail-section">
+      <h3>Cited Papers</h3>
+      <ul>
+        <li *ngFor="let paper of paperDetails.citedPapers">{{ paper.title }}</li>
+      </ul>
+    </div>
+
+    <div class="detail-section">
+      <h3>Citing Papers</h3>
+      <ul>
+        <li *ngFor="let paper of paperDetails.citingPapers">{{ paper.title }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div *ngIf="searchForm.get('queryType')?.value === 'allPapers' && results.length > 0" class="results">
+    <h2>All Papers:</h2>
+    <ul>
+      <li *ngFor="let paper of results" class="paper-title">
+        <ng-container *ngIf="paper.title">{{ paper.title }}</ng-container>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="searchForm.get('queryType')?.value !== 'allPapers' && results.length > 0" class="results">
+    <h2>Results:</h2>
+    <div *ngFor="let result of results" class="result-item">
+      <pre>{{ formatResult(result) }}</pre>
+    </div>
+  </div>
+</div>
