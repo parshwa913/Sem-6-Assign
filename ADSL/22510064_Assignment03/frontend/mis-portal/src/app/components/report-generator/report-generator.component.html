@@ -1,0 +1,36 @@
+<div class="report-generator">
+  <h2>Generic Report Generator</h2>
+  
+  <section class="report-controls-section">
+    <div class="report-controls">
+      <label for="tableSelect">Select Table:</label>
+      <select id="tableSelect" [(ngModel)]="selectedTable">
+        <option value="" disabled>Select a table</option>
+        <option *ngFor="let table of allowedTables" [value]="table">
+          {{ table | titlecase }}
+        </option>
+      </select>
+      <button class="btn-primary" (click)="loadReport()">Generate Report</button>
+      <button class="btn-secondary" (click)="downloadCSV()">Download CSV</button>
+    </div>
+    <div *ngIf="message" class="message">
+      {{ message }}
+    </div>
+  </section>
+  
+  <section class="report-table-section" *ngIf="reportData && reportData.length > 0">
+    <h3>Report Data</h3>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th *ngFor="let key of reportData[0] | keys">{{ key | titlecase }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportData">
+          <td *ngFor="let key of row | keys">{{ row[key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

@@ -1,0 +1,26 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo">
+    </div>
+    <h2 class="login-title">Welcome To Parshwa's MCQ Platform</h2>
+    <p class="login-subtitle">Please sign in to continue</p>
+    <form (ngSubmit)="login()">
+      <div class="input-group">
+        <input type="text" id="username" [(ngModel)]="username" name="username" required placeholder=" " />
+        <label for="username">Username</label>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" [(ngModel)]="password" name="password" required placeholder=" " />
+        <label for="password">Password</label>
+      </div>
+      <div class="options">
+        <label class="remember">
+          <input type="checkbox" name="remember" /> Remember me
+        </label>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</div>

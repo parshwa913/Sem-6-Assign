@@ -1,0 +1,74 @@
+/* Overall container with a gradient background */
+.student-dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: cursive;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Headings in white for contrast */
+  .student-dashboard h2,
+  .student-dashboard h3 {
+    color: white;
+    text-align: center;
+  }
+  
+  /* Card-like sections with white background */
+  .profile-section,
+  .courses-section,
+  .logout-section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Table styling */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .styled-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Button styling */
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: cursive;
+ 
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Logout button (if separate styling needed) */
+  .logout-section button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

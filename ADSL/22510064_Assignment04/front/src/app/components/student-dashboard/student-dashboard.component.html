@@ -1,0 +1,120 @@
+<div class="student-dashboard">
+  <!-- Add this at the top of your dashboard -->
+  <div class="dashboard-header">
+    <h2>Student Dashboard</h2>
+    <div class="user-info">
+      <span>Welcome, {{studentInfo.username || 'Student'}}</span>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Loading indicator -->
+  <div *ngIf="isLoading" class="loading-spinner">
+    <span>Loading...</span>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{errorMessage}}
+  </div>
+
+  <!-- Active exam view -->
+  <div *ngIf="activeExam && activeQuestions.length > 0" class="active-exam-container">
+    <div class="exam-header">
+      <h3>{{activeExam.title}}</h3>
+      <div class="exam-timer">Time Remaining: {{formatTime(timeRemaining)}}</div>
+    </div>
+
+    <div class="question-section">
+      <div class="question-counter">Question {{currentQuestionIndex + 1}} of {{activeQuestions.length}}</div>
+      
+      <div class="question-text">
+        {{activeQuestions[currentQuestionIndex].question_text}}
+      </div>
+
+      <div class="options">
+        <div class="option" 
+             [class.selected]="userAnswers[activeQuestions[currentQuestionIndex].id] === 'A'"
+             (click)="selectAnswer(activeQuestions[currentQuestionIndex].id, 'A')">
+          <span class="option-letter">A</span> {{activeQuestions[currentQuestionIndex].option_a}}
+        </div>
+        <div class="option" 
+             [class.selected]="userAnswers[activeQuestions[currentQuestionIndex].id] === 'B'"
+             (click)="selectAnswer(activeQuestions[currentQuestionIndex].id, 'B')">
+          <span class="option-letter">B</span> {{activeQuestions[currentQuestionIndex].option_b}}
+        </div>
+        <div class="option" 
+             [class.selected]="userAnswers[activeQuestions[currentQuestionIndex].id] === 'C'"
+             (click)="selectAnswer(activeQuestions[currentQuestionIndex].id, 'C')">
+          <span class="option-letter">C</span> {{activeQuestions[currentQuestionIndex].option_c}}
+        </div>
+        <div class="option" 
+             [class.selected]="userAnswers[activeQuestions[currentQuestionIndex].id] === 'D'"
+             (click)="selectAnswer(activeQuestions[currentQuestionIndex].id, 'D')">
+          <span class="option-letter">D</span> {{activeQuestions[currentQuestionIndex].option_d}}
+        </div>
+      </div>
+
+      <div class="question-navigation">
+        <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">Previous Question</button>
+        <button (click)="nextQuestion()" [disabled]="currentQuestionIndex === activeQuestions.length - 1">Next Question</button>
+        <button class="submit-button" (click)="submitExam()">Submit Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regular dashboard view (when not taking exam) -->
+  <div *ngIf="!activeExam" class="dashboard-content">
+    <div class="tabs">
+      <div class="tab" [class.active]="currentTab === 'upcoming'" (click)="setTab('upcoming')">Upcoming Exams</div>
+      <div class="tab" [class.active]="currentTab === 'completed'" (click)="setTab('completed')">Completed Exams</div>
+    </div>
+
+    <!-- Upcoming exams tab -->
+    <div *ngIf="currentTab === 'upcoming'" class="tab-content">
+      <div *ngIf="assignedExams.length === 0" class="no-data">
+        No exams currently assigned to you.
+      </div>
+
+      <div *ngIf="assignedExams.length > 0" class="exams-list">
+        <div *ngFor="let exam of assignedExams" class="exam-card">
+          <div class="exam-title">{{exam.title}}</div>
+          <div class="exam-description">{{exam.description}}</div>
+          <div class="exam-details">
+            <div><strong>Course:</strong> {{exam.course_name || 'N/A'}}</div>
+            <div><strong>Total Marks:</strong> {{exam.total_marks}}</div>
+            <div><strong>Duration:</strong> {{exam.duration_minutes}} minutes</div>
+            <div><strong>Starts:</strong> {{exam.start_time | date:'medium'}}</div>
+          </div>
+          <button class="start-exam-button" 
+                 (click)="startExam(exam)" 
+                 [disabled]="isExamInFuture(exam.start_time)">
+            Start Exam
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completed exams tab -->
+    <div *ngIf="currentTab === 'completed'" class="tab-content">
+      <div *ngIf="completedExams.length === 0" class="no-data">
+        No completed exams found.
+      </div>
+
+      <div *ngIf="completedExams.length > 0" class="exams-list">
+        <div *ngFor="let exam of completedExams" class="exam-card result-card">
+          <div class="exam-title">{{exam.title}}</div>
+          <div class="exam-score" [class.pass]="exam.status === 'passed'" [class.fail]="exam.status === 'failed'">
+            {{exam.score}} / {{exam.total_marks}}
+          </div>
+          <div class="exam-details">
+            <div><strong>Status:</strong> {{exam.status}}</div>
+            <div><strong>Percentage:</strong> {{calculatePercentage(exam.score, exam.total_marks)}}%</div>
+            <div><strong>Completed:</strong> {{exam.completion_date | date:'medium'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

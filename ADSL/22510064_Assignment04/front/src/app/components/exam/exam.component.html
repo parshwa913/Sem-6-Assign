@@ -1,0 +1,24 @@
+<ng-container *ngIf="exam; else loading">
+  <div class="exam-container">
+    <h2>{{ exam.title }}</h2>
+    <p>{{ exam.description }}</p>
+    <form (ngSubmit)="submitExam()">
+      <div class="question" *ngFor="let question of exam.questions">
+        <p class="question-text">{{ question.question_text }}</p>
+        <div class="options">
+          <label *ngFor="let opt of ['A', 'B', 'C', 'D']">
+            <input type="radio"
+                   name="question{{ question.id }}"
+                   [value]="opt"
+                   (change)="recordAnswer(question.id, opt)">
+            {{ question['option_' + opt.toLowerCase()] }}
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Submit Exam</button>
+    </form>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <p>Loading exam details...</p>
+</ng-template>

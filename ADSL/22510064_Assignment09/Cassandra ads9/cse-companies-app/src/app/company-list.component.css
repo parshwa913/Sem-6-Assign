@@ -1,0 +1,70 @@
+table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px solid #ffcc80;
+}
+
+thead {
+  background-color: #ffab40;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff8e1;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fff3e0;
+}
+
+tbody tr:hover {
+  background-color: #ffe28c;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button.edit {
+  background-color: #4caf50;
+  color: white;
+}
+
+button.edit:hover {
+  background-color: #43a047;
+}
+
+button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+button.delete:hover {
+  background-color: #e53935;
+}

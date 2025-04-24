@@ -1,0 +1,40 @@
+<div class="form-container">
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" placeholder="Enter company name" />
+      </div>
+      <div>
+        <label for="location">Location:</label>
+        <input id="location" formControlName="location" placeholder="Enter location" />
+      </div>
+      <div>
+        <label for="employee_count">Employee Count:</label>
+        <input
+          id="employee_count"
+          type="number"
+          formControlName="employee_count"
+          placeholder="Enter employee count"
+        />
+      </div>
+      <div>
+        <label for="founded_year">Founded Year:</label>
+        <input
+          id="founded_year"
+          formControlName="founded_year"
+          placeholder="Enter founded year"
+        />
+      </div>
+      <div>
+        <label for="industry">Industry:</label>
+        <input id="industry" formControlName="industry" placeholder="Enter industry" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" [disabled]="companyForm.invalid">
+          {{ isEditMode ? 'Update' : 'Save' }}
+        </button>
+        <button type="button" (click)="resetForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

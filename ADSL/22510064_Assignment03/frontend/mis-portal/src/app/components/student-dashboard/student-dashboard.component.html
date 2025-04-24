@@ -1,0 +1,58 @@
+<div class="student-dashboard">
+  <h2>Student Dashboard</h2>
+  
+  <!-- Profile & Advisor Section -->
+  <section class="profile-section">
+    <div class="student-info">
+      <h3>Profile Information</h3>
+      <p><strong>ID:</strong> {{ student.ID }}</p>
+      <p><strong>Name:</strong> {{ student.name }}</p>
+      <p><strong>Department:</strong> {{ student.dept_name }}</p>
+      <p><strong>Total Credits:</strong> {{ student.tot_cred }}</p>
+    </div>
+    <div class="advisor-info">
+      <h3>Advisor Information</h3>
+      <p *ngIf="advisor && advisor.name"><strong>Name:</strong> {{ advisor.name }}</p>
+      <p *ngIf="!advisor || !advisor.name">No advisor assigned.</p>
+    </div>
+  </section>
+  
+  <!-- Courses Section -->
+  <section class="courses-section">
+    <div class="courses-control" style="text-align: center; margin-bottom: 20px;">
+      <button class="btn-primary" (click)="loadCourses()">Load My Courses</button>
+    </div>
+    <div class="courses-list" *ngIf="displayCourses">
+      <h3>Courses Taken</h3>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Course ID</th>
+            <th>Title</th>
+            <th>Credits</th>
+            <th>Semester</th>
+            <th>Year</th>
+            <th>Section</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of courses">
+            <td>{{ course.course_id }}</td>
+            <td>{{ course.title }}</td>
+            <td>{{ course.credits }}</td>
+            <td>{{ course.semester }}</td>
+            <td>{{ course.year }}</td>
+            <td>{{ course.sec_id }}</td>
+            <td>{{ course.grade }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <!-- Logout Section -->
+  <section class="logout-section" style="text-align: center; margin-top: 20px;">
+    <button class="btn-primary" (click)="logout()">Logout</button>
+  </section>
+</div>

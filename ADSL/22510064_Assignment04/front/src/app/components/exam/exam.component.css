@@ -1,0 +1,39 @@
+.exam-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    min-height: 100vh;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  .question-text {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .options label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .submit-btn {
+    background: #764ba2;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background: #667eea;
+  }
+  

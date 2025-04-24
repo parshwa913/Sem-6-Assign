@@ -1,0 +1,5 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+teacher dashboa...,101,1,0,8,1.12,0.00%,2.5/sec,1.67,0.33,653.0
+login,101,1,0,3,0.55,0.00%,2.5/sec,1.67,0.33,653.0
+student dashboa...,101,1,0,4,0.58,0.00%,2.5/sec,1.67,0.33,653.0
+TOTAL,303,1,0,8,0.00,0.00%,7.5/sec,5.02,0.99,653.0

@@ -1,0 +1,277 @@
+<div class="dashboard-container">
+  <!-- Sidebar Navigation -->
+  <nav class="dashboard-sidebar d-none d-md-block">
+    <ul class="nav flex-column">
+      <li class="nav-item" (click)="setTab('dashboard')" [class.active]="currentTab === 'dashboard'">
+        <a class="nav-link">Dashboard</a>
+      </li>
+      <li class="nav-item" (click)="setTab('createExam')" [class.active]="currentTab === 'createExam'">
+        <a class="nav-link">Create Exam</a>
+      </li>
+      <li class="nav-item" (click)="setTab('manageQuestions')" [class.active]="currentTab === 'manageQuestions'">
+        <a class="nav-link">Question Bank</a>
+      </li>
+      <li class="nav-item" (click)="setTab('reports')" [class.active]="currentTab === 'reports'">
+        <a class="nav-link">Reports</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <div class="dashboard-content">
+    <!-- Add this header section with logout button -->
+    <div class="dashboard-header">
+      <h2>Teacher Portal</h2>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+    
+    <!-- DASHBOARD SECTION -->
+    <div *ngIf="currentTab === 'dashboard'">
+      <h1 class="section-title">Dashboard</h1>
+      
+      <!-- Stats Row -->
+      <div class="row text-center mb-4">
+        <div class="col-md-3 mb-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h5>Total Exams</h5>
+              <p class="stat-text">{{ examCount }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h5>Total Students</h5>
+              <p class="stat-text">{{ studentCount }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h5>Ongoing Exams</h5>
+              <p class="stat-text">{{ ongoingExams }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <div class="card stat-card">
+            <div class="card-body">
+              <h5>Completed Exams</h5>
+              <p class="stat-text">{{ completedExams }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Created Exams List -->
+      <h2 class="section-title">Created Exams</h2>
+      <div class="row">
+        <div *ngFor="let exam of createdExams" class="col-md-4 col-sm-6 mb-3">
+          <div class="card exam-tile">
+            <div class="card-body">
+              <h5 class="card-title">{{ exam.title }}</h5>
+              <p class="card-text">{{ exam.description }}</p>
+              <p class="card-text">
+                <small>Total: {{ exam.total_marks }} marks, Duration: {{ exam.duration_minutes }} min</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREATE EXAM FORM -->
+    <div *ngIf="currentTab === 'createExam'">
+      <h2 class="section-title">Create Exam</h2>
+      <div class="card form-card shadow-sm mb-4">
+        <div class="card-body">
+          <form>
+            <!-- Row 1: Exam Title and Course ID -->
+            <div class="row mb-3">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label for="examTitle" class="form-label">Exam Title</label>
+                  <input type="text" id="examTitle" class="form-control" placeholder="Enter exam title"
+                    [(ngModel)]="newExam.title" name="title">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="examCourseId" class="form-label">Course ID</label>
+                  <input type="number" id="examCourseId" class="form-control" placeholder="Enter course ID"
+                    [(ngModel)]="newExam.course_id" name="course_id">
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Exam Description -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="examDescription" class="form-label">Exam Description</label>
+                  <textarea id="examDescription" rows="3" class="form-control" placeholder="Enter exam description"
+                    [(ngModel)]="newExam.description" name="description"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Total Marks and Duration -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Total Marks</label>
+                <input type="number" class="form-control" [(ngModel)]="newExam.total_marks" name="total_marks">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Duration (min)</label>
+                <input type="number" class="form-control" [(ngModel)]="newExam.duration_minutes" name="duration_minutes">
+              </div>
+            </div>
+
+            <!-- Row 4: Start Time -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="examStartTime" class="form-label">Start Time</label>
+                  <input type="datetime-local" id="examStartTime" class="form-control"
+                    [(ngModel)]="newExam.start_time" name="start_time">
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 5: Question IDs -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="examQuestionIds" class="form-label">Question IDs (JSON Array)</label>
+                  <textarea id="examQuestionIds" rows="2" class="form-control" placeholder='e.g. [1,2,3]'
+                    [(ngModel)]="newExam.question_ids" name="question_ids"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 6: Assigned Students -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="examAssignedStudents" class="form-label">Assigned Students (IDs in JSON Array)</label>
+                  <textarea id="examAssignedStudents" rows="2" class="form-control" placeholder='e.g. [101,102]'
+                    [(ngModel)]="newExam.assigned_students" name="assigned_students"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="row">
+              <div class="col-12 text-end">
+                <button type="button" class="btn btn-primary" (click)="submitCreateExam()">Submit Exam</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION BANK FORM -->
+    <div *ngIf="currentTab === 'manageQuestions'">
+      <h2 class="section-title">Manage Question Bank</h2>
+      <div class="card form-card shadow-sm mb-4">
+        <div class="card-body">
+          <form>
+            <!-- Row 1: Course ID & Question Text -->
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label class="form-label">Course ID</label>
+                <textarea rows="1" class="form-control" placeholder="Enter course id" [(ngModel)]="newQuestion.course_id" name="questionText"></textarea>
+     
+              </div>
+              <div class="col-md-8">
+                <label class="form-label">Question Text</label>
+                <textarea rows="3" class="form-control" placeholder="Enter question text" [(ngModel)]="newQuestion.question_text" name="questionText"></textarea>
+              </div>
+            </div>
+            <!-- Row 2: Options -->
+            <div class="row mb-3">
+              <div class="col-md-3" *ngFor="let opt of questionOptions">
+                <label class="form-label">{{ opt | titlecase }}</label>
+                <input type="text" class="form-control" placeholder="Option {{ opt | titlecase }}" [(ngModel)]="newQuestion[opt]" name="{{opt}}">
+              </div>
+            </div>
+            <!-- Row 3: Correct Option & Difficulty -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Correct Option</label>
+                <select class="form-select" [(ngModel)]="newQuestion.correct_option" name="correctOption">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Difficulty</label>
+                <select class="form-select" [(ngModel)]="newQuestion.difficulty" name="difficulty">
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+            </div>
+            <!-- Row 4: Submit Button -->
+            <div class="row">
+              <div class="col-12 text-end">
+                <button type="button" class="btn btn-primary" (click)="submitManageQuestions()">Add Question</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS SECTION -->
+    <div *ngIf="currentTab === 'reports'">
+      <h2 class="section-title">Reports</h2>
+      <div class="card form-card shadow-sm mb-4">
+        <div class="card-body">
+          <!-- Header & Generate Button -->
+          <div class="row mb-3 align-items-center">
+            <div class="col-md-6">
+              <h4 class="mb-0">Detailed Report</h4>
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary" (click)="submitGenerateReports()">Generate Reports</button>
+            </div>
+          </div>
+          <!-- Report Table -->
+          <div *ngIf="reportData?.length; else noData">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>Exam</th>
+                    <th>Average Score</th>
+                    <th>Passed</th>
+                    <th>Failed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rep of reportData">
+                    <td>{{ rep.examTitle }}</td>
+                    <td>{{ rep.averageScore }}</td>
+                    <td>{{ rep.passedCount }}</td>
+                    <td>{{ rep.failedCount }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <ng-template #noData>
+            <p class="text-muted">No reports available. Click "Generate Reports" above.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

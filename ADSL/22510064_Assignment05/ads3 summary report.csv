@@ -1,0 +1,6 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+admin,200,1,0,5,0.89,0.00%,18.9/sec,15.19,2.44,821.0
+generate report,200,1,0,3,0.53,0.00%,18.9/sec,15.19,2.46,821.0
+instructor,200,1,0,3,0.50,0.00%,18.9/sec,15.19,2.53,821.0
+student,200,1,0,13,1.03,0.00%,18.9/sec,15.19,2.48,821.0
+TOTAL,800,1,0,13,0.78,0.00%,75.8/sec,60.73,9.91,821.0

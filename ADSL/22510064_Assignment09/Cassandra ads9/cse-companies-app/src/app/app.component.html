@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Companies Management</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of ['id', 'name', 'location', 'employees', 'founded', 'domain']">
+      <label>{{ field | titlecase }}</label>
+      <input [(ngModel)]="company[field]" name="{{ field }}" required />
+    </div>
+    <button type="submit">Add/Update Company</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let field of ['id', 'name', 'location', 'employees', 'founded', 'domain']">{{ field | titlecase }}</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td *ngFor="let field of ['id', 'name', 'location', 'employees', 'founded', 'domain']">{{ company[field] }}</td>
+        <td>
+          <button (click)="editCompany(company)">Edit</button>
+          <button (click)="deleteCompany(company.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

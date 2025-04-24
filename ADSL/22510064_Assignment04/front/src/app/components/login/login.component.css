@@ -1,0 +1,118 @@
+/* Apply a full viewport and clean font */
+:host, body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Container with gradient background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px;
+}
+
+/* Card styling with shadow and rounded corners */
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Title and subtitle styling */
+.login-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+  color: #333;
+}
+.login-subtitle {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Input group styling with floating labels */
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.input-group input:focus {
+  border-color: #764ba2;
+}
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-size: 16px;
+  color: #aaa;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+  background: #fff;
+  padding: 0 4px;
+  color: #764ba2;
+}
+
+/* Options styling: Remember me and Forgot Password */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.remember {
+  font-size: 14px;
+  color: #666;
+}
+.forgot-password {
+  font-size: 14px;
+  color: #3f51b5;
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Login button styling */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #764ba2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.login-btn:hover {
+  background: #667eea;
+}
+
+/* Error message styling */
+.error {
+  color: #e74c3c;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}

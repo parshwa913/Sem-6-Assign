@@ -1,0 +1,89 @@
+.admin-dashboard {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-family: cursive;
+}
+
+.admin-dashboard h2,
+.admin-dashboard h3 {
+  color: rgb(57, 5, 135);
+  text-align: center;
+}
+
+.add-instructor,
+.instructor-list {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.add-instructor form input,
+.add-instructor form button {
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: cursive;
+
+}
+
+.add-instructor form button {
+  cursor: pointer;
+}
+
+.instructor-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.instructor-list th,
+.instructor-list td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.instructor-list th {
+  background-color: #007bff;
+  color: white;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.logout button {
+  background-color: #d62436;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background-color: #c82333;
+}
+
+.message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}

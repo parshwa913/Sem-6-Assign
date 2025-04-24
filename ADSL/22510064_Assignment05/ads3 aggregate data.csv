@@ -1,0 +1,7 @@
+,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Maximum,Error %,Throughput,Received KB/sec,Sent KB/sec
+admin,301,1,1,2,4,4,0,5,0.00%,2.2/sec,1.75,0.28
+generate rep.,301,1,1,2,2,3,0,3,0.00%,2.2/sec,1.75,0.28
+instructor,301,1,1,2,2,3,0,4,0.00%,2.2/sec,1.75,0.29
+student,301,1,1,2,2,3,0,13,0.00%,2.2/sec,1.75,0.29
+formula 1,1,1616,1616,1616,1616,1616,1516,1616,0.00%,37.1/min,370.41,0.14
+TOTAL,1205,2,1,2,2,4,0,1616,0.00%,8.7/sec,11.33,1.14

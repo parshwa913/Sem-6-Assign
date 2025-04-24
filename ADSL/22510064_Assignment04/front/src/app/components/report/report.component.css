@@ -1,0 +1,33 @@
+.report-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f7f9;
+    min-height: 100vh;
+  }
+  
+  .report-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead th {
+    background: #667eea;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  tbody tr:hover {
+    background: #eaeaea;
+  }
+  

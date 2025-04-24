@@ -1,0 +1,37 @@
+<div>
+    <h2>Company List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Employee Count</th>
+          <th>Founded Year</th>
+          <th>Industry</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td>{{ company.name }}</td>
+          <td>{{ company.location }}</td>
+          <td>{{ company.employee_count }}</td>
+          <td>{{ company.founded_year }}</td>
+          <td>{{ company.industry }}</td>
+          <td class="actions">
+            <button class="edit" (click)="onEdit(company)">Edit</button>
+            <button class="delete" (click)="onDelete(company)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Toggleable Form -->
+  <div *ngIf="formVisible">
+    <app-company-form
+      [company]="selectedCompany"
+      (formSubmit)="onFormSubmit($event)"
+    ></app-company-form>
+  </div>
+  
