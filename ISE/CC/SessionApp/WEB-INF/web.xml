@@ -1,0 +1,29 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         version="3.0">
+    <servlet>
+        <servlet-name>SessionCookieServlet</servlet-name>
+        <servlet-class>SessionCookieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionCookieServlet</servlet-name>
+        <url-pattern>/SessionCookieServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SessionHiddenFieldServlet</servlet-name>
+        <servlet-class>SessionHiddenFieldServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionHiddenFieldServlet</servlet-name>
+        <url-pattern>/SessionHiddenFieldServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SessionHttpSessionServlet</servlet-name>
+        <servlet-class>SessionHttpSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionHttpSessionServlet</servlet-name>
+        <url-pattern>/SessionHttpSessionServlet</url-pattern>
+    </servlet-mapping>
+</web-app>

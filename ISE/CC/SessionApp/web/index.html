@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Session Management</title>
+</head>
+<body>
+    <h2>Choose Session Method</h2>
+    <form action="SessionCookieServlet" method="post">
+        Name: <input type="text" name="username">
+        <input type="submit" value="Use Cookies">
+    </form>
+
+    <form action="SessionHiddenFieldServlet" method="post">
+        Name: <input type="text" name="username">
+        <input type="submit" value="Use Hidden Fields">
+    </form>
+
+    <form action="SessionHttpSessionServlet" method="post">
+        Name: <input type="text" name="username">
+        <input type="submit" value="Use HttpSession">
+    </form>
+</body>
+</html>
